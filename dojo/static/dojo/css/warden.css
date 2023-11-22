@@ -5,10 +5,6 @@ body {
     border-color: #2E303A !important;
 }
 
-a {
-    color: #316CCD !important;
-}
-
 a:hover {
     color: #56C7D8 !important;
 }
@@ -125,12 +121,12 @@ small, .text-muted {
 
 /* Panels */
 .panel-default {
-    background-color: #0C5062 !important;
+    background-color: #2E303A !important;
     border-color: #56C7D8 !important;
 }
 
 .panel-default > .panel-heading {
-    background-color: #316CCD !important;
+    background-color: #25272D !important;
     color: #DFAD33 !important;
     border-bottom: 1px solid #2E303A !important;
 }
@@ -223,8 +219,20 @@ span.emoji {
     line-height: 2;
 }
 
+.emoji-nav {
+    vertical-align: bottom;
+}
+
 .status .panel {
-    min-height: 120px;
+    min-height: 0px;
+}
+
+.amber-color {
+    background: #b28900 !important;
+}
+
+.panel {
+    background-color: transparent !important;
 }
 
 /* Override Bootstrap's default button styling */
@@ -261,7 +269,7 @@ span.emoji {
 
 /* Override table styling */
 .table {
-    border-collapse: collapse !important;
+    border-collapse: collapse;
 }
 
 .table th,
@@ -316,4 +324,60 @@ div.dataTables_wrapper {
     -webkit-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
     -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
     transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:focus, .nav-tabs > li.active > a:hover {
+    color: #fff;
+    background-color: transparent !important;
+    border: 1px solid #73879c;
+}
+
+th a {
+    color: #EAEAEA;
+}
+
+.bg-vuln-critical {
+    background-color: #8B2323; /* Darker shade of red */
+}
+
+.bg-vuln-high {
+    background-color: #A0522D; /* Darker shade of orange */
+}
+
+.bg-vuln-medium {
+    background-color: #B8860B; /* Darker shade of yellow */
+}
+
+.bg-vuln-low {
+    background-color: #2E8B57; /* Darker shade of green */
+}
+
+.bg-vuln-info {
+    background-color: #1E90FF; /* Brighter shade of blue for contrast */
+}
+
+.bg-muted {
+    background-color: #555; /* Darker grey */
+}
+
+
+.severity-High {
+    background-color: #A0522D; /* Darker shade of orange */
+}
+
+.severity-Medium {
+    background-color: #B8860B; /* Darker shade of yellow */
+}
+
+/* Add styles for other severity classes if needed */
+.severity-Critical {
+    background-color: #8B2323; /* Darker shade of red */
+}
+
+.severity-Low {
+    background-color: #2E8B57; /* Darker shade of green */
+}
+
+.severity-Info {
+    background-color: #1E90FF; /* Brighter shade of blue for contrast */
 }

@@ -10,7 +10,7 @@
 {% endblock %}
 {% block content %}
     {{ block.super }}
-<div class="row">
+{% comment %} <div class="row">
   <div class="col-md-8">
     <div class="panel panel-default">
       <div class="panel-heading tight">
@@ -113,14 +113,14 @@
       <div class="panel-body">
         {{ prod.description|markdown_render }}
       </div>
-    </div>
+    </div> {% endcomment %}
 <!-- metrics -->
 
 <div class="row">
 <div class="col-md-12">
   <div class="panel panel-default">
     <div class="panel-heading">
-      <h3 class="panel-title"><span class="fa-solid fa-chart-pie" aria-hidden="true"></span>{% trans "Metrics" %}</h3>
+      <h3 class="panel-title"><span class="emoji-nav">&#x1F41E;</span>{% trans "Findings" %}</h3>
     </div>
     <table class="table table-condensed">
       <tbody>
@@ -138,7 +138,9 @@
 </div>
 </div>
 <!-- end metrics -->
-<div class="row">
+
+<!-- Technology and Regulations -->
+{% comment %} <div class="row">
   <div class="col-md-6">
     <div class="panel panel-default">
       <div class="panel-heading">
@@ -202,7 +204,8 @@
 
     </div>
   </div>
-</div>
+</div> {% endcomment %}
+<!-- End Technology and Regulations -->
 
 <!-- Benchmark Tab -->
 {% if system_settings.enable_benchmark %}
@@ -251,8 +254,8 @@
   </div>
 </div>
 {% endif %}
-
-    <div class="panel panel-default">
+<!-- Members -->
+    {% comment %} <div class="panel panel-default">
         <div class="panel-heading">
             <div class="clearfix">
                 <h4 class="pull-left">{% trans "Members" %}</h4>
@@ -338,9 +341,11 @@
                 <small class="text-muted"><em>{% trans "No members found." %}</em></small>
             </div>
         {% endif %}
-    </div>
+    </div> {% endcomment %}
+<!-- End members-->
 
-      <div class="panel panel-default">
+<!-- Groups -->
+      {% comment %} <div class="panel panel-default">
           <div class="panel-heading">
               <div class="clearfix">
                   <h4 class="pull-left">{% trans "Groups" %}</h4>
@@ -427,9 +432,11 @@
           {% endif %}
       </div>
 
-</div>
+</div> {% endcomment %}
+<!-- End groups -->
+
 <!-- Meta Data -->
-<div class="col-md-4">
+{% comment %} <div class="col-md-4">
   <div class="panel panel-default panel-default-secondary">
     <div class="panel-heading">
       <h3 class="panel-title"><span class="fa-solid fa-circle-info fa-fw" aria-hidden="true"></span>{% trans "Metadata" %}</h3>
@@ -488,10 +495,10 @@
         </tbody>
       </table>
     </div>
-  </div>
-
+  </div> {% endcomment %}
 <!-- End metadata -->
-<!-- SLA -->
+
+{% comment %} <!-- SLA -->
     {% if system_settings.enable_finding_sla %}
     <div class="panel panel-default panel-default-secondary">
     <div class="panel-heading">
@@ -523,7 +530,7 @@
       </table>
     </div>
   </div>
-{% endif %}
+{% endif %} {% endcomment %}
 <!-- End SLA -->
 <!-- Lang -->
 {% if languages %}
@@ -572,7 +579,7 @@
 {% endif %}
 <!-- end custom fields -->
 <!-- Contacts -->
-  <div class="panel panel-default panel-default-secondary">
+  {% comment %} <div class="panel panel-default panel-default-secondary">
     <div class="panel-heading">
       <h3 class="panel-title"><span class="fa-solid fa-users fa-fw" aria-hidden="true"></span>{% trans "Contacts" %}</h3>
     </div>
@@ -594,10 +601,10 @@
         </tbody>
       </table>
     </div>
-  </div>
+  </div> {% endcomment %}
 <!-- end contacts -->
 <!-- Notifications -->
-<div class="panel panel-default panel-default-secondary" id="edit_notifications">
+{% comment %} <div class="panel panel-default panel-default-secondary" id="edit_notifications">
   <div class="panel-heading">
     {% url 'notifications' as notifications_url %}
     <h3 class="panel-title"><span class="fa-solid fa-users fa-fw" aria-hidden="true"></span>{% trans "Notifications" %}
@@ -636,7 +643,7 @@
       </table>
   </div>
   </form>
-</div>
+</div> {% endcomment %}
 <!-- end Notifications -->
 
 </div>

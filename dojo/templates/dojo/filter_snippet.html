@@ -11,17 +11,17 @@
     {{ form.media.js }}
 {% endblock %}
 <div class="filter-set">
-    <form method="get" {% if form_id %}id="{{form_id}}"{% endif %} class="{{ request.path|slugify }}-filters form-inline dojo-filter-set">
+    <form method="get" {% if form_id %}id="{{form_id}}"{% endif %} class="{{ request.path|slugify }}-filters form-inline">
         {% for field in form.hidden_fields %}
             {{ field }}
         {% endfor %}
-        <div class="filter-form-group">
+        <div class="filter-form-group-wrdn">
             {% for field in form.visible_fields %}
-                <div class="filter-form-input">
+                <div class="filter-form-input-wrdn">
                     {{ field.errors }}
                     <label for="{{ field.auto_id }}" style="display: block;">{{ field.label }}</label>
                     {% with placeholder="placeholder:"|add:field.label %}
-                        {{ field|addcss:"class: form-control filter-form-control"|addcss:placeholder }}
+                        {{ field|addcss:"class: form-control-wrdn filter-form-control"|addcss:placeholder }}
                     {% endwith %}
                 </div>
             {% endfor %}
@@ -54,32 +54,3 @@
     </form>
 
 </div>
-<script>
-    $(document).ready(function() {
-    $(".filter-set>form").first().submit(function(event) {
-      var formData = $(".filter-set>form").first().serializeArray();
-      var filteredFormData = formData.filter(function(item) {
-        // Remove null or empty values
-        return item.value !== "" && item.value !== null && item.value !== 'unknown';
-      });
-      // Construct the query parameters from the filtered data
-      var queryParams = filteredFormData.map(function(item) {
-        return encodeURIComponent(item.name) + "=" + encodeURIComponent(item.value);
-      });
-
-      // Get the current page's URL
-      var currentPageURL = window.location.href;
-
-      // Remove existing query parameters from the current URL
-      var baseUrl = currentPageURL.split('?')[0];
-
-      // Append the new query parameters to the base URL
-      var newAction = baseUrl + "?" + queryParams.join("&");
-
-      // Append the query parameters to the action URL
-      var newAction = baseUrl + "?" + queryParams.join("&");
-      window.location.href = newAction;
-      event.preventDefault();
-    });
-  });
-</script>

@@ -31,13 +31,13 @@
                                 </a>
                             </li>
                             </ul>
-                            <button id="show-filters" data-toggle="collapse" data-target="#the-filters" class="btn btn-primary toggle-filters"> <i class="fa-solid fa-filter"></i> <i class="caret"></i> </button>
+                            <!-- <button id="show-filters" data-toggle="collapse" datra-target="#the-filters" class="btn btn-primary toggle-filters"> <i class="fa-solid fa-filter"></i> <i class="caret"></i> </button> -->
                         </div>
                     </h3>
                 </div>
-                <div id="the-filters" class="is-filters panel-body collapse {% if filter_form.has_changed %}in{% endif %}">
+                <!-- <div id="the-filters" class="is-filters panel-body collapse {% if filter_form.has_changed %}in{% endif %}">
                     {% include "dojo/filter_snippet.html" with form=filter_form %}
-                </div>
+                </div> -->
             </div>
             {% if engagements %}
 
@@ -47,7 +47,7 @@
 
                 <div class="table-responsive panel panel-default">
                     <table id="engagements"
-                           class="tablesorter-bootstrap table table-condensed table-striped table-hover">
+                           class="tablesorter-bootstrap table table-condensed">
                         <tr>
                             <th></th>
                             {% comment %} The display field is translated in the function. No need to translate here as well{% endcomment %}
@@ -56,11 +56,11 @@
                             <th>{% dojo_sort request 'Period' 'target_start' 'asc' %}</th>
                             <th>Status</th>
                             {% comment %} The display field is translated in the function. No need to translate here as well{% endcomment %}
-                            <th class="prod_name">{% dojo_sort request 'Product' 'product__name' 'asc' %}</th>
-                            {% comment %} The display field is translated in the function. No need to translate here as well{% endcomment %}
-                            <th class="prod_name">{% dojo_sort request 'Product Type' 'product__prod_type__name' %}</th>
-                            {% comment %} The display field is translated in the function. No need to translate here as well{% endcomment %}
-                            <th>{% dojo_sort request 'Lead' 'lead__first_name' %}</th>
+                            <th class="prod_name">{% dojo_sort request 'Repository' 'product__name' 'asc' %}</th>
+                            <!-- {% comment %} The display field is translated in the function. No need to translate here as well{% endcomment %} -->
+                            <!-- <th class="prod_name">{% dojo_sort request 'Product Type' 'product__prod_type__name' %}</th> -->
+                            {% comment %} <!-- The display field is translated in the function. No need to translate here as well --> {% endcomment %}
+                            <!-- <th>{% dojo_sort request 'Lead' 'lead__first_name' %}</th> -->
                             <th>Tests</th>
                             {% if system_settings.enable_jira %}
                                 <th>Jira</th>
@@ -165,12 +165,12 @@
                                     {{ e.product|jira_project_tag }}
                                     {% include "dojo/snippets/tags.html" with tags=e.product.tags.all %}
                                 </td>
-                                <td class="prod_name">
+                                <!-- <td class="prod_name">
                                     <a href="{% url 'product_type_metrics' e.product.prod_type.id %}">
                                         {{ e.product.prod_type.name }}
                                     </a>
-                                </td>
-                                <td>{{ e.lead.first_name }} {{ e.lead.last_name }}</td>
+                                </td> -->
+                                <!-- <td>{{ e.lead.first_name }} {{ e.lead.last_name }}</td> -->
                                 <td>
                                     <a class="eng_link" href="{%url 'view_engagement' e.id %}#tests">
                                         {% with test_count=engagement_test_counts|dict_key:e.pk|default_if_none:0 %}

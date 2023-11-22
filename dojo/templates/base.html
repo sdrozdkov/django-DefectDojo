@@ -12,14 +12,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
         <title>
-            {% if request.session.dojo_breadcrumbs and not product_tab.tab %}
-                {% with request.session.dojo_breadcrumbs|last as last %}
-                    {{ last.title }} |
-                {% endwith %}
-            {% elif product_tab.title %}
-                {{ product_tab.title }} |
-            {% endif %}
-            DefectDojo
+            Warden AI
         </title>
         {% block add_css_before %}
         {% endblock %}
@@ -91,13 +84,18 @@
         {% comment %} <link rel="stylesheet" href="{% static "datatables.net-buttons-dt/css/buttons.dataTables.min.css" %}"> {% endcomment %}
         <link rel="stylesheet" href="{% static "datatables.net-bs/css/dataTables.bootstrap.min.css" %}">
         <link rel="stylesheet" href="{% static "datatables.net-buttons-bs/css/buttons.bootstrap.min.css" %}">
+        <link href="{% static 'fontawesomefree/css/solid.css' %}" rel="stylesheet" type="text/css">
 
+        <!-- Warden CSS -->
+        
         <style>
             {% block add_styles %}
             {% endblock %}
         </style>
+        
+        <link rel="stylesheet" href="{% static "dojo/css/warden.css" %}">
     </head>
-    <body class="{% dojo_body_class %}">
+    <body class="max">
         <div id="wrapper">
             {% block navigation %}
                 <!-- Navigation -->
@@ -111,7 +109,7 @@
                         </button>
                         <a class="navbar-brand" href="{% url 'home' %}">
                         {% block header_logo %}
-                            <img src="{% static "dojo/img/logo.png" %}" alt="DefectDojo Logo" width="240"/>
+                            <img src="{% static "dojo/img/logo.png" %}" alt="Warden Logo" width="180"/>
                         {% endblock %}
                         </a>
 
@@ -121,7 +119,7 @@
                     <ul class="nav navbar-top-links navbar-right">
                         {% if request.user.is_authenticated %}
                             <li>
-                                <div class="custom-search-form">
+                                <!-- <div class="custom-search-form">
                                     <form id="custom_search_form" role="search" method="get" action="{% url 'simple_search' %}">
                                         <div class="input-group">
                                             <input id="simple_search" label="simple_search" aria_label="simple_search" type="text" name="query" class="form-control"
@@ -133,7 +131,7 @@
                                             </span>
                                         </div>
                                     </form>
-                                </div>
+                                </div> -->
                                 <!-- /input-group -->
                             </li>
                             <li class="dropdown">
@@ -213,8 +211,8 @@
                     <!-- /.navbar-top-links -->
 
                     {% if request.user.is_authenticated %}
-                        <div class="navbar-default sidebar navbar-fixed-top" role="navigation">
-                            <div class="sidebar-nav navbar-collapse">
+                        <div class="navbar-default sidebar navbar-fixed-top" aria-expanded="true" role="navigation">
+                            <div class="sidebar-nav">
                                 <ul class="nav" id="side-menu">
                                     {% block sidebar-items %}
                                         <li>
@@ -226,10 +224,10 @@
                                         <li>
                                             <a id="product-side-menu" href="{% url 'product' %}" aria-expanded="false" aria-label="Products">
                                                 <i class="fa-solid fa-list-ul fa-fw"></i>
-                                                <span>{% trans "Products" %}</span>
+                                                <span>{% trans "Repositories" %}</span>
                                                 <span class="glyphicon arrow"></span>
                                             </a>
-                                            <ul class="nav nav-second-level">
+                                            {% comment %} <ul class="nav nav-second-level">
                                                 <li>
                                                     <a href="{% url 'product' %}">
                                                         {% trans "All Products" %}
@@ -254,16 +252,16 @@
                                                         </a>
                                                     </li>
                                                 {% endif %}
-                                            </ul>
+                                            </ul> {% endcomment %}
                                             <!-- /.nav-second-level -->
                                         </li>
                                         <li>
                                             <a href="{% url 'engagement' %}" aria-expanded="false" aria-label="Engagements">
                                                 <i class="fa-solid fa-inbox fa-fw"></i>
-                                                <span>{% trans "Engagements" %}</span>
+                                                <span>{% trans "Scans" %}</span>
                                                 <span class="glyphicon arrow"></span>
                                             </a>
-                                            <ul class="nav nav-second-level">
+                                            {% comment %} <ul class="nav nav-second-level">
                                                 <li>
                                                     <a href="{% url 'active_engagements' %}">
                                                         {% trans "Active Engagements" %}
@@ -289,7 +287,7 @@
                                                         {% trans "Environments" %}
                                                     </a>
                                                 </li>
-                                            </ul>
+                                            </ul> {% endcomment %}
                                             <!-- /.nav-second-level -->
                                         </li>
                                         <li>
@@ -298,7 +296,7 @@
                                                 <span>{% trans "Findings" %}</span>
                                                 <span class="glyphicon arrow"></span>
                                             </a>
-                                            <ul class="nav nav-second-level">
+                                            {% comment %} <ul class="nav nav-second-level">
                                                 <li>
                                                     <a href="{% url 'open_findings' %}">
                                                         {% trans "Open Findings" %}
@@ -326,21 +324,8 @@
                                                         </a>
                                                     </li>
                                                 {% endif %}
-                                            </ul>
+                                            </ul> {% endcomment %}
                                             <!-- /.nav-second-level -->
-                                        </li>
-                                        <li>
-                                            <a href="{% url 'components' %}" id="product_component_view" aria-expanded="false"  aria-label="Components">
-                                                <i class="fa-solid fa-table-cells-large fa-fw"></i>
-                                                <span>{% trans "Components" %}</span>
-                                            </a>
-                                            <ul class="nav nav-second-level">
-                                                <li>
-                                                    <a href="{% url 'components' %}">
-                                                        {% trans "All Components" %}
-                                                    </a>
-                                                </li>
-                                            </ul>
                                         </li>
                                         <li>
                                             <a href="{% url 'endpoint' %}" aria-expanded="false" aria-label="Endpoints">
@@ -348,7 +333,7 @@
                                                 <span>{% trans "Endpoints" %}</span>
                                                 <span class="glyphicon arrow"></span>
                                             </a>
-                                            <ul class="nav nav-second-level">
+                                            {% comment %} <ul class="nav nav-second-level">
                                                 <li>
                                                     <a href="{% url 'endpoint' %}">
                                                         {% trans "All Endpoints" %}
@@ -376,64 +361,24 @@
                                                         </a>
                                                     </li>
                                                 {% endif %}
-                                            </ul>
+                                            </ul> {% endcomment %}
                                         </li>
-                                        <li>
+                                        {% comment %} <li>
                                             <a href="{% url 'report_builder' %}" aria-expanded="false" aria-label="Reports">
                                                 <i class="fa-solid fa-file-lines fa-fw"></i>
                                                 <span>{% trans "Reports" %}</span>
                                                 <span class="glyphicon arrow"></span>
                                             </a>
                                             <!-- /.nav-second-level -->
-                                        </li>
-                                        <li>
-                                            <a href="{% url 'metrics' %}?date=5&view=dashboard" aria-expanded="false" aria-label="Metrics">
-                                                <i class="fa-solid fa-chart-column fa-fw"></i>
-                                                <span>{% trans "Metrics" %}</span>
-                                                <span class="glyphicon arrow"></span>
-                                            </a>
-                                            <ul class="nav nav-second-level">
-                                                <li>
-                                                    <a href="{% url 'metrics' %}?date=5&view=dashboard">
-                                                        {% trans "Metrics Dashboard" %}
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="{% url 'critical_product_metrics' %}">
-                                                        {% trans "Critical Product Metrics" %}
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="{% url 'metrics_product_type' %}">
-                                                        {% trans "Product Type Metrics" %}
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="{% url 'product_type_counts' %}">
-                                                        {% trans "Product Type Counts" %}
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="{% url 'simple_metrics' %}">
-                                                        {% trans "Simple Metrics" %}
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="{% url 'engineer_metrics' %}">
-                                                        {% trans "Engineer Metrics" %}
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                            <!-- /.nav-second-level -->
-                                        </li>
+                                        </li> {% endcomment %}
                                         {% if "auth.view_user"|has_configuration_permission:request or "auth.view_group"|has_configuration_permission:request %}
                                             <li>
-                                                <a href="{% url 'users' %}" aria-disabled="true" aria-expanded="false" aria-label="Users" id="id_user_menu">
+                                                <a href="{% url 'users' %}" aria-expanded="false" aria-label="Users" id="id_user_menu">
                                                     <i class="fa-solid fa-user fa-fw"></i>
                                                     <span>{% trans "Users" %}</span>
                                                     <span class="glyphicon arrow"></span>
                                                 </a>
-                                                <ul class="nav nav-second-level">
+                                                {% comment %} <ul class="nav nav-second-level">
                                                     {% if "auth.view_user"|has_configuration_permission:request %}
                                                         <li>    
                                                             <a href="{% url 'users' %}">
@@ -448,7 +393,7 @@
                                                             </a>
                                                         </li>
                                                     {% endif %}
-                                                </ul>
+                                                </ul> {% endcomment %}
                                             </li>
                                         {% endif %}
                                         {% if system_settings.enable_calendar %}
@@ -487,7 +432,8 @@
                                                 </li>
                                             {% endif %}
                                         {% endif %}
-                                        <li id="menu_configuration">
+                                        {% if request.user.is_superuser %}
+                                            <li id="menu_configuration">
                                             <a href="#" aria-expanded="false" aria-label="Configuration">
                                                 <i class="fa-solid fa-gear fa-fw"></i>
                                                 <span>{% trans "Configuration" %}</span>
@@ -574,22 +520,23 @@
                                                     </li>
                                                 {% endif %}
                                             </ul>
-                                        </li>
+                                            </li>
+                                        {% endif %}
                                     {% endblock %}
-                                    {% block support-tab %}
+                                    {% comment %} {% block support-tab %}
                                         <li>
                                             <a href="{% url 'support' %}" aria-disabled="true" aria-expanded="false" aria-label="Support">
                                                 <i class="fa-solid fa-life-ring fa-fw"></i>
                                                 <span>{% trans "Get Support" %}</span>
                                             </a>
                                         </li>
-                                    {% endblock %}
-                                    <li id="min-menu">
+                                    {% endblock %} {% endcomment %}
+                                    {% comment %} <li id="min-menu">
                                         <a href="#" id="minimize-menu" title="Expand/Collapse Menu" aria-label="Expand/Collapse Menu">
                                             <i id="nav-minimize-menu-li" class="fa-solid fa-circle-right fa-fw"></i>
                                             <span>{% trans "Collapse Menu" %}</span>
                                         </a>
-                                    </li>
+                                    </li> {% endcomment %}
                                 </ul>
                             </div>
                             <!-- /.sidebar-collapse -->
@@ -600,7 +547,7 @@
             {% endblock %}
             <!-- Page Content -->
             <div id="page-wrapper">
-                {% if request.user.is_authenticated and announcement %}
+                {% comment %} {% if request.user.is_authenticated and announcement %}
                     {% load announcement_banner_tags %}
                     <div role="alert" class="announcement-banner alert alert-{{ announcement.style }} {% if announcement.dismissable %}alert-dismissible{% endif %} show">
                     {% if announcement.dismissable %}
@@ -610,7 +557,7 @@
                     {% endif %}
                     {{ announcement.message|bleach_announcement_message }}
                     </div>
-                {% endif %}
+                {% endif %} {% endcomment %}
                 <div class="container-fluid">
                     <!-- start of tabs -->
                     {% block tab_bar %}

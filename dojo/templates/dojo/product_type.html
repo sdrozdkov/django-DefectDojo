@@ -47,18 +47,21 @@
                            class="tablesorter-bootstrap table table-condensed table-striped">
                         <thead>
                         <tr>
+                            {% if request.user.is_superuser %}
                             <th></th>
+                            {% endif %}
                             {% comment %} The display field is translated in the function. No need to translate here as well{% endcomment %}
-                            <th>{% dojo_sort request 'Product Type' 'name' 'asc' %}</th>
-                            <th>{% trans "Product count" %}</th>
+                            <th>{% dojo_sort request 'Repository Group' 'name' 'asc' %}</th>
+                            <th>{% trans "Repositories count" %}</th>
                             <th>{% trans "Active (Verified) findings" %}</th>
-                            <th class="text-center">{% trans "Critical product" %}</th>
-                            <th class="text-center">{% trans "Key product" %}</th>
+                            {% comment %} <th class="text-center">{% trans "Critical repository" %}</th>
+                            <th class="text-center">{% trans "Key product" %}</th> {% endcomment %}
                         </tr>
                         </thead>
                         <tbody>
                         {% for pt in pts %}
                             <tr>
+                                {% if request.user.is_superuser %}
                                 <td>
                                     <ul>
                                         <li class="dropdown" style="list-style:none;position:absolute">
@@ -100,12 +103,14 @@
                                         </li>
                                     </ul>
                                 </td>
+                                {% endif %}
                                 <td><a href="{% url 'view_product_type' pt.id %}">{{ pt.name }}</a></td>
                                 <td><a href="{% url 'product' %}?prod_type={{ pt.id }}"> {{ pt.prod_count }} </a></td>
                                 <td>
                                     <a href="{% url 'open_findings' %}?test__engagement__product__prod_type={{ pt.id }}"><b>{{ pt.active_findings_count }}</b></a>
                                     &nbsp;(<a href="{% url 'verified_findings' %}?test__engagement__product__prod_type={{ pt.id }}">{{ pt.active_verified_findings_count }}</a>)
                                 </td>
+                                {% if request.user.is_superuser %}
                                 <td class="text-center">
                                     {% if pt.critical_product %}
                                         <i class="text-success fa-solid fa-check"></i>
@@ -120,6 +125,7 @@
                                         <i class="text-danger fa-solid fa-xmark"></i>
                                     {% endif %}
                                 </td>
+                                {% endif %}
                             </tr>
                         {% endfor %}
                         </tbody>

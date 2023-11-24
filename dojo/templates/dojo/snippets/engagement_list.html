@@ -38,10 +38,14 @@
             <table id={{ status }} class="tablesorter-bootstrap table table-condensed table-striped table-hover">
                 <thead>
                 <tr>
+                    {% if request.user.is_superuser %}
                     <th></th>
+                    {% endif %}
                     <th>Name</th>
                     <th>Type</th>
+                    {% if request.user.is_superuser %}
                     <th>Lead</th>
+                    {% endif %}
                     <th class="text-left">Date</th>
                     <th class="text-left">Length</th>
                     {% if system_settings.enable_jira %}

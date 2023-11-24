@@ -339,12 +339,12 @@
                                             {% trans "SLA" %}
                                         </th>
                                     {% endif %}
-                                    <th>
+                                    {% comment %} <th>
                                         {% trans "Reporter" %}
-                                    </th>
-                                    <th>
+                                    </th> {% endcomment %}
+                                    {% comment %} <th>
                                         {% trans "Found By" %}
-                                    </th>
+                                    </th> {% endcomment %}
                                     <th>
                                         {% trans "Status" %}
                                     </th>
@@ -361,23 +361,23 @@
                                             </th>
                                         {% endif %}
                                     {% endif %}
-                                    {% if 'is_finding_groups_enabled'|system_setting_enabled %}
+                                    {% comment %} {% if 'is_finding_groups_enabled'|system_setting_enabled %}
                                         <th>
                                             {% trans "Group" %}
                                         </th>
-                                    {% endif %}
-                                    {% if show_product_column and product_tab is None %}
+                                    {% endif %} {% endcomment %}
+                                    {% comment %} {% if show_product_column and product_tab is None %}
                                         <th class="nowrap">
                                             {% comment %} The display field is translated in the function. No need to translate here as well{% endcomment %}
                                             {% dojo_sort request 'Product' 'test__engagement__product__name' %}
                                         </th>
-                                    {% endif %}
-                                    <th>
+                                    {% endif %} {% endcomment %}
+                                    {% comment %} <th>
                                         {% trans "Service" %}
                                     </th>
                                     <th>
                                         {% trans "Planned Remediation" %}
-                                    </th>
+                                    </th> {% endcomment %}
                                 {% endblock header %}
                             </tr>
                         </thead>

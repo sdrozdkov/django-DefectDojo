@@ -38,7 +38,7 @@
                             {% endif %}
                             <th>Status</th>
                             <th>Period</th>
-                            <th>Lead</th>
+                            {% comment %} <th>Lead</th> {% endcomment %}
                             <th>Tests</th>
                             <th>Engagement</th>
                         </tr>
@@ -145,7 +145,7 @@
                                         <sup><div class="tag-label warning-color">{{ e.target_end|overdue }} overdue</div></sup>
                                         {% endif %}
                                     </td>
-                                    <td> {{ e.lead.first_name }} {{ e.lead.last_name }}</td>
+                                    {% comment %} <td> {{ e.lead.first_name }} {{ e.lead.last_name }}</td> {% endcomment %}
                                     <td>
                                         <a class="eng_link"
                                            href="{% url 'view_engagement' e.id %}#tests">

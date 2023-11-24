@@ -159,16 +159,16 @@
                                                 {{ request.user.username }}
                                             </a>
                                         </li>
-                                        {% if API_TOKENS_ENABLED %}
+                                        {% comment %} {% if API_TOKENS_ENABLED %}
                                           <li>
                                               <a href="{% url 'api_v2_key' %}">
                                                 <i class="fa-solid fa-key fa-fw"></i>
                                                   {% trans "API v2 Key" %}
                                               </a>
                                           </li>
-                                        {% endif %}
+                                        {% endif %} {% endcomment %}
                                     {% endif %}
-                                    <li>
+                                    {% comment %} <li>
                                         <a href="{% url 'api_v2_schema' %}" target="_blank">
                                             <i class="fa-solid fa-book fa-fw" title="OpenAPI v2 Docs"></i>
                                             {% trans "API v2 OpenAPI2 Docs (Deprecated)" %}
@@ -185,7 +185,7 @@
                                             <i class="fa-solid fa-circle-question fa-fw"></i>
                                             {% trans "Documentation" %}
                                         </a>
-                                    </li>
+                                    </li> {% endcomment %}
                                 {% endblock %}
                                 {% if request.user.is_authenticated %}
                                     {% if SAML2_LOGOUT_URL != '' %}

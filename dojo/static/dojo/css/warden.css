@@ -224,7 +224,7 @@ span.emoji {
 }
 
 .status .panel {
-    min-height: 0px;
+    min-height: 0px !important;
 }
 
 .amber-color {

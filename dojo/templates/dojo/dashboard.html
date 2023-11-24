@@ -170,14 +170,14 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            {% trans "Weekly activity, displayed by day, of findings you reported." %}*
+                            {% trans "Weekly activity" %}*
                         </div>
                         <div class="panel-body">
                             <div class="chart" id="punchcard"></div>
                             <p class="text-center text-muted small">{% trans "Week begins on date displayed." %}</p>
                             <p>
                                 <br/>
-                                <span class="text-muted small">* {% trans "Weeks are only displayed if findings are available." %}</span>
+                                {% comment %} <span class="text-muted small">* {% trans "Weeks are only displayed if findings are available." %}</span> {% endcomment %}
                             </p>
                         </div>
                     </div>

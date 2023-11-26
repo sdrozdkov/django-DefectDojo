@@ -366,12 +366,6 @@
                                             {% trans "Group" %}
                                         </th>
                                     {% endif %} {% endcomment %}
-                                    {% comment %} {% if show_product_column and product_tab is None %}
-                                        <th class="nowrap">
-                                            {% comment %} The display field is translated in the function. No need to translate here as well{% endcomment %}
-                                            {% dojo_sort request 'Product' 'test__engagement__product__name' %}
-                                        </th>
-                                    {% endif %} {% endcomment %}
                                     {% comment %} <th>
                                         {% trans "Service" %}
                                     </th>

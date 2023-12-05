@@ -331,9 +331,9 @@
                                             {% dojo_sort request 'Date' 'date' %}
                                         {% endif %}
                                     </th>
-                                    <th class="nowrap">
+                                    {% comment %} <th class="nowrap">
                                         {% trans "Age" %}
-                                    </th>
+                                    </th> {% endcomment %}
                                     {% if system_settings.enable_finding_sla %}
                                         <th>
                                             {% trans "SLA" %}
@@ -345,9 +345,9 @@
                                     {% comment %} <th>
                                         {% trans "Found By" %}
                                     </th> {% endcomment %}
-                                    <th>
+                                    {% comment %} <th>
                                         {% trans "Status" %}
-                                    </th>
+                                    </th> {% endcomment %}
                                     {% if system_settings.enable_jira %}
                                         {% if jira_project and product_tab or not product_tab %}
                                             <th>
@@ -594,21 +594,21 @@
                                                 {{ finding.date }}
                                             {% endif %}
                                         </td>
-                                        <td>
+                                        {% comment %} <td>
                                             {{ finding.age }}
-                                        </td>
+                                        </td> {% endcomment %}
                                         {% if system_settings.enable_finding_sla %}
                                             <td>
                                                 {{ finding|finding_sla }}
                                             </td>
                                         {% endif %}
-                                        <td>
+                                        {% comment %} <td>
                                             {% if finding.reporter.get_full_name and finding.reporter.get_full_name.strip %}
                                                 {{ finding.reporter.get_full_name }}
                                             {% else %}
                                                 {{ finding.reporter }}
                                             {% endif %}
-                                        </td>
+                                        </td> {% endcomment %}
                                         <td>
                                             <a target="#"
                                             data-toggle="tooltip"

@@ -709,13 +709,13 @@
                     { "data": "cwe" },
                     { "data": "cve" },
                     { "data": "found_date" },
-                    { "data": "finding_age" },
+                    {% comment %} { "data": "finding_age" }, {% endcomment %}
                 {% if system_settings.enable_finding_sla %}
                     { "data": "finding_sla" },
                 {% endif %}
                 { "data": "reported_by" },
                 { "data": "found_by_test" },
-                { "data": "status" },
+                {% comment %} { "data": "status" }, {% endcomment %}
                 {% if system_settings.enable_jira %}
                     {% if jira_project and product_tab or not product_tab %}
                         { "data": "jira_id" },
